@@ -5,3 +5,7 @@ Interview Anki helps developers practice programming interview questions using t
 ### Database Initialization
 
 ### Running
+
+### Todo
+
+[] Add Validation to user signup

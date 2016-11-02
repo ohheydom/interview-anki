@@ -9,6 +9,8 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     = render 'partials/header'
-    %p.notice= notice
-    %p.alert= alert
+    %div.row
+      %div.small-12.columns.flash-messages
+        %p.notice= notice
+        %p.alert= alert
     = yield
