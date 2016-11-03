@@ -1,0 +1,5 @@
+= provide(:title, 'Challenges')
+%div.row
+  %div.small-12.columns
+    - @challenges.each do |challenge|
+      = link_to(challenge.title, challenge)

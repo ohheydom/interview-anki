@@ -1,5 +1,6 @@
+= provide(:title, 'New User')
 %div.row
-  %div.small-12.columns
+  %div.medium-8.medium-offset-2.small-12.columns
     %h2 Sign up
     = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
       = devise_error_messages!

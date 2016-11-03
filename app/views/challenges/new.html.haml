@@ -1,0 +1,23 @@
+= provide(:title, 'New Challenge')
+%div.row
+  %div.small-12.columns
+    %h2 Create new Challenge
+    = form_for(@challenge, url: { action: :create }) do |f|
+      %div.field
+        = f.label :title
+        = f.text_field :title, autofocus: true
+
+      %div.field
+        = f.label :description
+        = f.text_area :description
+
+      %div.field
+        = f.label :boilerplate_code
+        = f.text_area :boilerplate_code
+
+      %div.field
+        = f.label :test_cases
+        = f.text_area :test_cases
+
+      %div.actions
+        = f.submit 'Submit', { class: :button }

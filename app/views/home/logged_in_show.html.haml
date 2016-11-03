@@ -1,4 +1,4 @@
 = provide(:title, current_user.username)
 %div.row
   %div.small-12.columns
-    Logged in
+    = link_to('Create a new challenge', new_challenge_path)

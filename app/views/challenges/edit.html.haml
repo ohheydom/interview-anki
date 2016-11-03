@@ -1,0 +1,24 @@
+= provide(:title, 'Edit Challenge')
+%div.row
+  %div.small-12.columns
+    %h2 Edit Challenge
+    = form_for(@challenge, url: { action: :update }, method: :patch) do |f|
+      %div.field
+        = f.label :title
+        = f.text_field :title, autofocus: true
+
+      %div.field
+        = f.label :description
+        = f.text_area :description
+
+      %div.field
+        = f.label :boilerplate_code
+        = f.text_area :boilerplate_code
+
+      %div.field
+        = f.label :test_cases
+        = f.text_area :test_cases
+
+      %div.actions
+        = f.submit 'Submit', { class: :button }
+        = link_to('Cancel', @challenge)

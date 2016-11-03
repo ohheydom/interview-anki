@@ -1,0 +1,19 @@
+= provide(:title, @challenge.title)
+%div.row
+  %div.small-12.columns
+    %div.row
+      %div.medium-8.large-10.columns
+        %h2= @challenge.title
+      %div.medium-2.large-1.columns
+        = button_to('Add', new_user_challenge_path, { class: 'button add-challenge' })
+      %div.medium-2.large-1.columns
+        = button_to('Remove', delete_user_challenge_path, { method: :delete, class: 'button add-challenge' })
+    %h4= @challenge.description
+    = form_tag('/api', method: :post) do
+      = label_tag(:code, 'Code')
+      = text_area_tag(:code, nil, { class: 'code-area' })
+      = label_tag(:boilerplate, 'Boilerplate')
+      = text_area_tag(:boilerplate, @challenge.boilerplate_code, { readonly: true })
+      = label_tag(:test_cases, 'Test Cases')
+      = text_area_tag(:test_cases, @challenge.test_cases, { readonly: true })
+      = submit_tag('Test', { class: :button })
