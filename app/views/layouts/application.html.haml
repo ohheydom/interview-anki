@@ -12,5 +12,7 @@
     %div.row
       %div.small-12.columns.flash-messages
         %p.notice= notice
-        %p.alert= alert
+        %p.error= alert
+        - flash.each do |k, v|
+          %p.error= v
     = yield

@@ -26,4 +26,13 @@ feature 'Home Page Logged in' do
     click_button('Login')
     expect(page).to have_link('Create a new challenge')
   end
+
+  scenario 'Page has link to view all created challenges' do
+    new_user = User.new(email: 'a@a.aaaaa', password: 'aaaaaa', username: 'aaaaaa').save
+    visit '/'
+    fill_in('user[email]', with: 'a@a.aaaaa')
+    fill_in('user[password]', with: 'aaaaaa')
+    click_button('Login')
+    expect(page).to have_link('View Created Challenges')
+  end
 end
