@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require foundation
 //= require turbolinks
+//= require codemirror
+//= require codemirror/modes/ruby
+//= require codemirror/modes/clike
+//= require codemirror/modes/python
 //= require_tree .
 
 $(function(){ $(document).foundation(); });

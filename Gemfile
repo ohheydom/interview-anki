@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'haml-rails', '~> 0.9'
 gem 'devise'
 gem 'foundation-rails'
+gem 'codemirror-rails'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

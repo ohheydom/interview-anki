@@ -1,5 +1,11 @@
-= provide(:title, 'Challenges')
+= provide(:title, 'All Challenges')
 %div.row
   %div.small-12.columns
-    - @challenges.each do |challenge|
-      = link_to(challenge.title, challenge)
+    %h2 All Challenges
+    - if @challenges
+      %table
+        - @challenges.each do |challenge|
+          %tr
+            %td= link_to challenge.title, challenge
+            %td= link_to 'Edit', edit_challenge_path(challenge)
+            %td= link_to 'Delete', challenge, { method: :delete, data: { confirm: 'Are you sure?' } }

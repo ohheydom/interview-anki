@@ -8,6 +8,7 @@ Interview Anki helps developers practice programming interview questions using t
 
 ### Todo
 
+[] Change challenge url to contain slug, not id
 [] Create all model associations
   * UserChallenge has many attempts
   * Attempt belongs to UserChallenges, contains code field, user_challenge_id
@@ -22,11 +23,9 @@ Interview Anki helps developers practice programming interview questions using t
   * Display all challenges, dimming ones that are already added to your challenge list
   * Enable adding Challenge to UserChallenge table
 [] Challenge Show
-  * If not part of your list, you must add first before attempting
-  * Enable adding Challenge to UserChallenge table
-  * Enable removing challenge from UserChallenge table, removing all attempts
   * Links to past attempts
   * Interacts with HackerRank api to upload code and test
+[] Run Rails Best Practices
 
 ### Ideas
 

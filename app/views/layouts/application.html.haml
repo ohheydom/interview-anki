@@ -11,8 +11,9 @@
     = render 'partials/header'
     %div.row
       %div.small-12.columns.flash-messages
-        %p.notice= notice
-        %p.error= alert
         - flash.each do |k, v|
-          %p.error= v
+          - if k == 'notice'
+            %p.notice= v
+          - else
+            %p.error= v
     = yield

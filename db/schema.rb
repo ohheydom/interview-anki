@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103121711) do
+ActiveRecord::Schema.define(version: 20161104180400) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "title"
@@ -20,8 +20,10 @@ ActiveRecord::Schema.define(version: 20161103121711) do
     t.string   "boilerplate_code"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-    t.integer  "user_id"
     t.integer  "creator_id"
+    t.string   "starter_code"
+    t.integer  "language"
+    t.index ["creator_id"], name: "index_challenges_on_creator_id"
   end
 
   create_table "user_challenges", force: :cascade do |t|

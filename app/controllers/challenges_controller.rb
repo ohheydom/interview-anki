@@ -1,9 +1,14 @@
 class ChallengesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_challenge, only: [:show, :edit, :update, :destroy]
+  before_action :language_options, only: [:new, :edit]
   before_action :authorize_user_to_edit, only: [:edit, :update, :destroy]
 
   def show
+    if current_user.user_challenges.find_by_challenge_id(params[:id])
+    else
+      flash.now[:error] = 'You must save this challenge to your list if you wish to practice the challenge.'
+    end
   end
 
   def index
@@ -20,9 +25,9 @@ class ChallengesController < ApplicationController
 
   def destroy
     if not @challenge.destroy
-      flash[:error] = 'There was a problem deleting the challenge.'
+      flash.now[:error] = 'There was a problem deleting the challenge.'
     else
-      flash[:success] = 'Challenge deleted.'
+      flash.now[:notice] = 'Challenge deleted.'
     end
     redirect_to user_created_challenges_path
   end
@@ -34,7 +39,7 @@ class ChallengesController < ApplicationController
     if @challenge.save
       redirect_to @challenge
     else
-      flash[:error] = 'There was an error.'
+      flash.now[:error] = 'There was an error.'
       redirect_to root_path
     end
   end
@@ -54,12 +59,12 @@ class ChallengesController < ApplicationController
 
   private
   def challenge_params
-    params.require(:challenge).permit(:slug, :title, :description, :boilerplate_code, :test_cases)
+    params.require(:challenge).permit(:slug, :title, :description, :boilerplate_code, :starter_code, :language, :test_cases)
   end
 
   def authorize_user_to_edit
     if @challenge.creator != current_user
-      flash[:error] = 'You cannot modify a challenge you did not create.'
+      flash.now[:error] = 'You cannot modify a challenge you did not create.'
       redirect_to @challenge
     end
   end
@@ -67,8 +72,12 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.find_by_id(params[:id])
     if not @challenge
-      flash[:error] = 'Challenge was not found.'
+      flash.now[:error] = 'Challenge was not found.'
       redirect_to root_path
     end
+  end
+
+  def language_options
+    @language_options = [['Python', 5], ['Ruby', 8], ['Java', 3]]
   end
 end

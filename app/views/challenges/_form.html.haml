@@ -1,0 +1,23 @@
+%div.field
+  = f.label :title
+  = f.text_field :title, autofocus: true
+
+%div.field
+  = f.label :description
+  = f.text_area :description, { class: 'description-area' }
+
+%div.field
+  = f.label :language
+  = f.select :language, options_for_select(language_options)
+
+%div.field
+  = f.label :boilerplate_code
+  = f.text_area :boilerplate_code, { class: 'boilerplate-area' }
+
+%div.field
+  = f.label :starter_code
+  = f.text_area :starter_code, { class: 'code-area' }
+
+%div.field
+  = f.label :test_cases
+  = f.text_area :test_cases
