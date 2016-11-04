@@ -1,12 +1,15 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
+  var starterCode = $('.code-area');
+  var boilerplate = $('.boilerplate-area');
+
+  if (starterCode.length == 0) return;
+
+  var language;
   var languageMap = {
     'Java': 'text/x-java',
     'Python': 'python',
     'Ruby': 'ruby',
   };
-  var starterCode = $('.code-area');
-  var boilerplate = $('.boilerplate-area');
-  var language;
   var starterCodeMirror = CodeMirror.fromTextArea(starterCode.get(0), {
     lineNumbers: true,
   });
