@@ -5,5 +5,5 @@
     = form_for(@challenge, url: { action: :update }, method: :patch) do |f|
       = render 'form', { f: f, language_options: @language_options }
       %div.actions
-        = f.submit 'Submit', { class: :button }
+        = f.submit 'Save', { class: :button }
         = link_to('Cancel', @challenge)

@@ -59,7 +59,7 @@ class ChallengesController < ApplicationController
 
   private
   def challenge_params
-    params.require(:challenge).permit(:slug, :title, :description, :boilerplate_code, :starter_code, :language, :test_cases)
+    params.require(:challenge).permit(:slug, :title, :description, :boilerplate_code, :starter_code, :language, :test_case_input, :test_case_output, :test_cases)
   end
 
   def authorize_user_to_edit

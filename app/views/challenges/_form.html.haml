@@ -19,5 +19,18 @@
   = f.text_area :starter_code, { class: 'code-area' }
 
 %div.field
-  = f.label :test_cases
-  = f.text_area :test_cases
+  = f.hidden_field :starter_code_raw
+
+%div.field
+  = f.hidden_field :boilerplate_code_raw
+
+%table
+  %tr
+    %td
+      %div.field
+        = f.label :test_case_input
+        = f.text_area :test_case_input
+    %td
+      %div.field
+        = f.label :test_case_ouput
+        = f.text_area :test_case_output

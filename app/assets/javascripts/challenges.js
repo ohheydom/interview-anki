@@ -12,10 +12,14 @@ $(document).on('turbolinks:load', function() {
   };
   var starterCodeMirror = CodeMirror.fromTextArea(starterCode.get(0), {
     lineNumbers: true,
+    indentUnit: 4,
+    indentWithTabs: true,
   });
 
   var boilerplateMirror = CodeMirror.fromTextArea(boilerplate.get(0), {
     lineNumbers: true,
+    indentUnit: 4,
+    indentWithTabs: true,
   });
 
   if (boilerplate.attr('readonly') === undefined) {
@@ -25,6 +29,17 @@ $(document).on('turbolinks:load', function() {
       starterCodeMirror.setOption('mode', languageMap[language]);
       boilerplateMirror.setOption('mode', languageMap[language]);
     });
+    bc = $('#challenge_boilerplate_code_raw').val();
+    bc = bc.replace(new RegExp(/\\r\\n/, "gm"), "\r\n");
+    bc = bc.replace(new RegExp(/\\t/, "gm"), "\t");
+    bc = bc.replace(new RegExp(/\\\"/, "gm"), '"');
+    boilerplateMirror.setOption('value', bc)
+
+    sc = $('#challenge_starter_code_raw').val();
+    sc = sc.replace(new RegExp(/\\r\\n/, "gm"), "\r\n");
+    sc = sc.replace(new RegExp(/\\t/, "gm"), "\t");
+    sc = sc.replace(new RegExp(/\\\"/, "gm"), '"');
+    starterCodeMirror.setOption('value', sc)
   } else {
     language = $('#language').text();
     boilerplateMirror.setOption('readOnly', true);

@@ -6,6 +6,10 @@ Interview Anki helps developers practice programming interview questions using t
 
 ### Running
 
+You'll first need an API key from HackerRank, which you can retrieve here: [https://www.hackerrank.com/api/docs](https://www.hackerrank.com/api/docs).
+
+Set your environment variable HACKERRANK\_KEY equal to your key.
+
 ### Todo
 
 [] Change challenge url to contain slug, not id
