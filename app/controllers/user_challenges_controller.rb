@@ -25,7 +25,8 @@ class UserChallengesController < ApplicationController
     if challenge
       api_key = Rails.application.secrets.hackerrank_api_key
       hackerrank = HackerRank.new(api_key, params, challenge.challenge)
-      @response = hackerrank.post
+      hr_response = hackerrank.post
+      @results = hackerrank.parse_result(hr_response)
       respond_to do |format|
         format.html
         format.js { render '/challenges/submit' }
