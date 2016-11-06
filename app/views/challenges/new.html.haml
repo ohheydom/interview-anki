@@ -3,6 +3,6 @@
   %div.small-12.columns
     %h2 Create new Challenge
     = form_for(@challenge, url: { action: :create }) do |f|
-      = render 'form', { f: f, language_options: @language_options }
+      = render 'form', { f: f, language_options: @language_options, challenge: @challenge }
       %div.actions
         = f.submit 'Submit', { class: :button }

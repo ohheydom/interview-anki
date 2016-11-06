@@ -29,6 +29,10 @@ Set your environment variable HACKERRANK\_KEY equal to your key.
 [] Challenge Show
   * Links to past attempts
   * Interacts with HackerRank api to upload code and test
+[] Fix Test cases
+  When creating or editing, allow insertion of new line for test case and answer
+  Properly parse and store in database
+  Properly parse when sending out to hackerrank api
 [] Run Rails Best Practices
 
 ### Ideas

@@ -3,7 +3,7 @@
   %div.small-12.columns
     %h2 Edit Challenge
     = form_for(@challenge, url: { action: :update }, method: :patch) do |f|
-      = render 'form', { f: f, language_options: @language_options }
+      = render 'form', { f: f, language_options: @language_options, challenge: @challenge }
       %div.actions
         = f.submit 'Save', { class: :button }
         = link_to('Cancel', @challenge)

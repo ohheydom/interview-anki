@@ -16,6 +16,6 @@
       = label_tag(:boilerplate, 'Boilerplate')
       = text_area_tag(:boilerplate, @challenge.boilerplate_code, { class: 'boilerplate-area', readonly: true })
       = label_tag(:test_cases, 'Test Cases')
-      = text_area_tag(:test_cases, @challenge.test_case_input, { readonly: true })
+      = text_area_tag(:test_case_input, @challenge.test_case_input, { readonly: true })
       = submit_tag('Run', { class: :button })
     %h4#results Results

@@ -25,11 +25,17 @@ class ChallengesController < ApplicationController
 
   def destroy
     if not @challenge.destroy
-      flash.now[:error] = 'There was a problem deleting the challenge.'
+      flash[:error] = 'There was a problem deleting the challenge.'
     else
-      flash.now[:notice] = 'Challenge deleted.'
+      flash[:notice] = 'Challenge deleted.'
     end
     redirect_to user_created_challenges_path
+  end
+
+  def add_test_case
+    respond_to do |format|
+      format.js { render '/challenges/add_test_case' }
+    end
   end
 
   def create
@@ -37,9 +43,10 @@ class ChallengesController < ApplicationController
     slug = title.parameterize
     @challenge = current_user.created_challenges.new({ slug: slug }.merge(challenge_params))
     if @challenge.save
+      flash[:notice] = 'Challenge has successfully been created.'
       redirect_to @challenge
     else
-      flash.now[:error] = 'There was an error.'
+      flash[:error] = 'There was an error.'
       redirect_to root_path
     end
   end
@@ -59,7 +66,7 @@ class ChallengesController < ApplicationController
 
   private
   def challenge_params
-    params.require(:challenge).permit(:slug, :title, :description, :boilerplate_code, :starter_code, :language, :test_case_input, :test_case_output, :test_cases)
+    params.require(:challenge).permit(:slug, :title, :description, :boilerplate_code, :starter_code, :language, :test_case_input=> [], :test_case_output => [])
   end
 
   def authorize_user_to_edit

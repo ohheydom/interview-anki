@@ -43,7 +43,7 @@ $(document).on('turbolinks:load', function() {
   } else {
     language = $('#language').text();
     boilerplateMirror.setOption('readOnly', true);
-    starterCodeMirror.setOption('mode', languageMap[language]);
-    boilerplateMirror.setOption('mode', languageMap[language]);
   }
+  starterCodeMirror.setOption('mode', languageMap[language]);
+  boilerplateMirror.setOption('mode', languageMap[language]);
 });

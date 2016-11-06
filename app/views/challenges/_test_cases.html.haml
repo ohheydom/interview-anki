@@ -1,0 +1,10 @@
+%table
+  %tr
+    %td
+      %div.field
+        = label_tag 'challenge_test_case_input', 'Test Case Input'
+        = text_area_tag 'challenge[test_case_input][]', tc[0]
+    %td
+      %div.field
+        = label_tag 'challenge_test_case_output', 'Test Case Output'
+        = text_area_tag 'challenge[test_case_output][]', tc[1]

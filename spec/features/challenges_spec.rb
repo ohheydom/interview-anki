@@ -32,4 +32,15 @@ feature 'Challenges Index' do
     visit challenge_path(new_challenge)
     expect(page).to_not have_content('You must save this challenge to your list if you wish to practice the challenge.')
   end
+
+  scenario 'Create new challenge has a button to Add more test cases' do
+    new_user = User.new(email: 'a@a.aaaaa', password: 'aaaaaa', username: 'aaaaaa')
+    new_user.save
+    visit '/'
+    fill_in('user[email]', with: 'a@a.aaaaa')
+    fill_in('user[password]', with: 'aaaaaa')
+    click_button('Login')
+    visit new_challenge_path
+    expect(page).to have_link('Add a test case')
+  end
 end

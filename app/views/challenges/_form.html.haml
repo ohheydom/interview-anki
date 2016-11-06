@@ -24,13 +24,12 @@
 %div.field
   = f.hidden_field :boilerplate_code_raw
 
-%table
-  %tr
-    %td
-      %div.field
-        = f.label :test_case_input
-        = f.text_area :test_case_input
-    %td
-      %div.field
-        = f.label :test_case_ouput
-        = f.text_area :test_case_output
+%div.field.test-cases
+  - if challenge.test_case_input != []
+    - challenge.test_cases.each do |tc|
+      = render 'test_cases', tc: tc
+  - else
+    = render 'test_cases', tc: ['', '']
+
+%div.field
+  = link_to 'Add a test case', {action: 'add_test_case'} , { remote: true, class: 'button' }

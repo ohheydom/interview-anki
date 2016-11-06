@@ -1,8 +1,4 @@
-require 'uri'
-require 'net/http'
-require 'net/https'
-require 'rest-client'
-
+require 'hackerrank'
 
 class UserChallengesController < ApplicationController
   def create
@@ -25,16 +21,11 @@ class UserChallengesController < ApplicationController
   end
 
   def submit
-    url = 'http://api.hackerrank.com/checker/submission.json'
     challenge = current_user.user_challenges.find_by_challenge_id(params[:id])
     if challenge
-      challenge = challenge.challenge
-      new_ps = {}
-      new_ps[:source] = params[:code] + "\n" + challenge.boilerplate_code
-      new_ps[:testcases] = challenge.test_case_input.split(",").to_json
-      new_ps[:lang] = challenge.language
-      new_ps[:api_key] = Rails.application.secrets.hackerrank_api_key
-      @val = get_api_call(url, new_ps)
+      api_key = Rails.application.secrets.hackerrank_api_key
+      hackerrank = HackerRank.new(api_key, params, challenge.challenge)
+      @response = hackerrank.post
       respond_to do |format|
         format.html
         format.js { render '/challenges/submit' }
@@ -43,10 +34,5 @@ class UserChallengesController < ApplicationController
       flash[:error] = 'You cannot submit a challenge unless you have added it to your list.'
       redirect_to challenge_path(params[:id])
     end
-  end
-
-  private
-  def get_api_call(url, args_hash)
-    RestClient.post(url, args_hash)
   end
 end

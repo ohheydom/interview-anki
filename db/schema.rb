@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161104180400) do
+ActiveRecord::Schema.define(version: 20161106141506) do
 
   create_table "challenges", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
-    t.string   "test_cases"
     t.string   "description"
     t.string   "boilerplate_code"
     t.datetime "created_at",       null: false
@@ -23,6 +22,8 @@ ActiveRecord::Schema.define(version: 20161104180400) do
     t.integer  "creator_id"
     t.string   "starter_code"
     t.integer  "language"
+    t.string   "test_case_input"
+    t.string   "test_case_output"
     t.index ["creator_id"], name: "index_challenges_on_creator_id"
   end
 
