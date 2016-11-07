@@ -1,7 +1,12 @@
 
 ### Database Initialization
 
-SQLite database is setup already so no need to run migrations.
+Run the following two commands to setup the databases:
+
+```
+rake db:create
+rake db:migrate
+```
 
 ### Running
 
