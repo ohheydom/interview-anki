@@ -1,0 +1,5 @@
+%div.row
+  = form_tag user_challenge_update_anki_dates_path, method: :patch do
+    - anki_dates.each_with_index do |date, idx|
+      %div.small-3.columns
+        = button_tag date[0], { class: :button, value: idx }

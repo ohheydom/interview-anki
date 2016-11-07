@@ -85,7 +85,7 @@ class ChallengesController < ApplicationController
   def find_challenge
     @challenge = Challenge.find_by_id(params[:id])
     if not @challenge
-      flash.now[:error] = 'Challenge was not found.'
+      flash[:error] = 'Challenge was not found.'
       redirect_to root_path
     end
   end

@@ -1,42 +1,34 @@
 # Interview Anki
 
-Interview Anki helps developers practice programming interview questions using the Anki spaced repetition system
+Interview Anki helps developers practice programming interview questions using the Anki spaced repetition system.
 
 ### Database Initialization
+
+SQLite database is setup already so no need to run migrations.
 
 ### Running
 
 You'll first need an API key from HackerRank, which you can retrieve here: [https://www.hackerrank.com/api/docs](https://www.hackerrank.com/api/docs).
 
-Set your environment variable HACKERRANK\_KEY equal to your key.
+Set the environment variable HACKERRANK\_KEY equal to your API key.
+
+Then run the webserver:
+
+```
+rails server
+```
 
 ### Todo
 
 [] Change challenge url to contain slug, not id
 [] Create all model associations
-  * UserChallenge has many attempts
-  * Attempt belongs to UserChallenges, contains code field, user_challenge_id
+  * UserChallenge has many Attempts
+  * Attempt belongs to UserChallenges, contains code field, user\_challenge\_id
 [] Fix model dependencies
-  * Deleting a challenge deletes appropriate attempts
-  * Deleting a UserChallenge deletes attempts
-[] Non logged-in Home
-  * Explain what Interview Anki is
-[] User Home
-  * Lists the five or so algorithms you should complete today
+  * Deleting a challenge deletes appropriate Attempts and UserChallenges
+  * Deleting a UserChallenge deletes Attempts
 [] Challenge Index
   * Display all challenges, dimming ones that are already added to your challenge list
-  * Enable adding Challenge to UserChallenge table
+  * Enable adding Challenge to User's Deck
 [] Challenge Show
   * Links to past attempts
-  * Interacts with HackerRank api to upload code and test
-[] Fix Test cases
-  When creating or editing, allow insertion of new line for test case and answer
-  Properly parse and store in database
-  Properly parse when sending out to hackerrank api
-[] Run Rails Best Practices
-
-### Ideas
-
-Attempts
-  belongs_to :user_challenges
-  code: string

@@ -1,1 +1,4 @@
 $('#results').html("<%= j render '/challenges/results', results: @results %>");
+<% if @anki_dates %>
+  $('#anki-dates').html("<%= j render '/challenges/anki_dates', anki_dates: @anki_dates %>")
+<% end %>
