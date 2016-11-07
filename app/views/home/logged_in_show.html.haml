@@ -4,3 +4,9 @@
     %div= link_to('Create a new challenge', new_challenge_path)
     %div= link_to('View Created Challenges', user_created_challenges_path)
     %div= link_to('View All Challenges', challenges_path)
+  %div.medium-8.columns
+    %h3 Today's Challenges
+    %hr
+    %ul
+      - @challenges.each do |challenge|
+        %li= link_to challenge.challenge.title, challenge.challenge

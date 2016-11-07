@@ -5,7 +5,13 @@ class ChallengesController < ApplicationController
   before_action :authorize_user_to_edit, only: [:edit, :update, :destroy]
 
   def show
-    if current_user.user_challenges.find_by_challenge_id(params[:id])
+    user_challenge = current_user.user_challenges.find_by_challenge_id(params[:id])
+    if user_challenge
+      if user_challenge.due_today?
+        flash.now[:notice] = 'This challenge is due today.'
+      else
+        flash.now[:error] = 'This challenge is not due today.'
+      end
     else
       flash.now[:error] = 'You must save this challenge to your list if you wish to practice the challenge.'
     end
