@@ -7,9 +7,11 @@ class UserChallengesController < ApplicationController
 
     if user_challenge.save
       flash[:notice] = 'Challenge has been added to your list.'
-      redirect_to challenge_path(params[:id])
     else
+      flash[:error] = 'There was an error.'
     end
+
+    redirect_to challenge_path(params[:id])
   end
 
   def destroy
@@ -18,8 +20,10 @@ class UserChallengesController < ApplicationController
     if user_challenge
       if user_challenge.delete
         flash[:notice] = 'Challenge has been deleted from your list.'
-        redirect_to challenge_path(params[:id])
+      else
+        flash[:error] = 'There was an error.'
       end
+      redirect_to challenge_path(params[:id])
     end
   end
 
@@ -50,11 +54,18 @@ class UserChallengesController < ApplicationController
       due_today = challenge.due_today?
       @anki_dates = false
       if due_today
-        @anki_dates = Anki.new(challenge).determine_next_dates
+        interval = challenge.interval
+        reviews = challenge.reviews
+        @anki_dates = Anki.new(interval, reviews).determine_next_dates
       end
 
-      api_key = Rails.application.secrets.hackerrank_api_key
-      hackerrank = HackerRank.new(api_key, params, challenge.challenge)
+      hr_params = {api_key: Rails.application.secrets.hackerrank_api_key,
+                   source: params[:code] + "\n" + challenge.challenge.boilerplate_code,
+                   test_case_inputs: challenge.challenge.test_case_input.to_json,
+                   lang: challenge.challenge.language,
+                   test_case_outputs: challenge.challenge.test_case_output }
+
+      hackerrank = HackerRank.new(hr_params)
       hr_response = hackerrank.post
       @results = hackerrank.parse_result(hr_response)
       respond_to do |format|
