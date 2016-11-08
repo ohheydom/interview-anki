@@ -28,7 +28,7 @@ For instance, if you want to create a function that simply prints a given value,
 
 ##### BoilerPlate Code
 
-```
+```python
 import sys
 n = int(sys.stdin.readline())
 print_val(n)
@@ -36,7 +36,7 @@ print_val(n)
 
 ##### Starter Code
 
-```
+```python
 def print_val(v):
   pass # For the user to implement
 ```

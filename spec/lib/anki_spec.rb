@@ -16,7 +16,9 @@ describe '.determine_next_dates' do
   end
 
   it 'returns 10 minutes, 1 day, 2 days, and 3 days for a new challenge' do
-    anki = Anki.new(@user_challenge)
+    interval = @user_challenge.interval
+    reviews = @user_challenge.reviews
+    anki = Anki.new(interval, reviews)
     arr = anki.determine_next_dates
     expect(arr[0][0]).to eq('10 Minutes')
     expect(arr[3][0]).to eq('3 Days')
@@ -24,14 +26,18 @@ describe '.determine_next_dates' do
 
   it 'returns 10 mins, interval, interval + 1, and interval + 2 days if < 3 reviews' do
     @user_challenge.update(reviews: 2, interval: 2)
-    anki = Anki.new(@user_challenge)
+    interval = @user_challenge.interval
+    reviews = @user_challenge.reviews
+    anki = Anki.new(interval, reviews)
     arr = anki.determine_next_dates
     expect(arr[3][0]).to eq('4 Days')
   end
 
   it 'returns 10 mins, interval, interval + 10, and interval + 20 days if > 3 reviews' do
     @user_challenge.update(reviews: 4, interval: 10)
-    anki = Anki.new(@user_challenge)
+    interval = @user_challenge.interval
+    reviews = @user_challenge.reviews
+    anki = Anki.new(interval, reviews)
     arr = anki.determine_next_dates
     expect(arr[3][0]).to eq('30 Days')
   end

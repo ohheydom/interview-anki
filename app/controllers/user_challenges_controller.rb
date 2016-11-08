@@ -29,7 +29,9 @@ class UserChallengesController < ApplicationController
     if challenge
       button_idx = params[:button].to_i
       if [0, 1, 2, 3].include?(button_idx)
-        anki_dates = Anki.new(challenge).determine_next_dates
+        challenge_inverval = @challenge.interval
+        challenge_reviews = @challenge.reviews
+        anki_dates = Anki.new(challenge_interval, challenge_reviews).determine_next_dates
         interval = anki_dates[button_idx][1]
         challenge.update_due_date(interval)
         f_date = (DateTime.now + interval).strftime("%B #{(DateTime.now + interval).day.ordinalize}")
